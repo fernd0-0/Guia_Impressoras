@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ajuda de campo: impressoras</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef1f2;--panel:#fff;--ink:#1b2a30;--muted:#5a6b72;--line:#cfd8db;--accent:#0f6e6e;--accent-ink:#fff;--soft:#e2eeee;--warn:#fff4d6;--warn-ink:#5c4400;--bad:#a33;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#12191c;--panel:#1a2428;--ink:#e6eef0;--muted:#93a5ab;--line:#2f3f45;--accent:#4fc1bd;--accent-ink:#08201f;--soft:#1f3436;--warn:#3a3115;--warn-ink:#f1d98a;--bad:#f08a8a}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#12191c;--panel:#1a2428;--ink:#e6eef0;--muted:#93a5ab;--line:#2f3f45;--accent:#4fc1bd;--accent-ink:#08201f;--soft:#1f3436;--warn:#3a3115;--warn-ink:#f1d98a;--bad:#f08a8a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:760px;margin:0 auto;padding:18px 14px 40px}
+h1{font-size:22px;margin:0 0 4px;font-weight:600}
+.sub{color:var(--muted);margin:0 0 14px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px;margin-bottom:12px}
+label{display:block;font-size:13px;color:var(--muted);margin:10px 0 4px}
+input[type=text],textarea{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:10px}
+textarea{resize:vertical}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button{font:inherit;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:6px;padding:11px 14px;cursor:pointer}
+button.pri{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:500}
+.pick{display:block;width:100%;text-align:left;margin-top:8px;padding:12px}
+.pick b{display:block}
+.pick span{color:var(--muted);font-size:14px}
+.list{display:flex;flex-direction:column}
+h2{font-size:18px;margin:0 0 2px;font-weight:600}
+.why{color:var(--muted);margin:0 0 10px}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:8px;margin-bottom:8px;overflow:hidden}
+.step.cur{border:2px solid var(--accent)}
+.sh{display:flex;gap:10px;align-items:center;width:100%;text-align:left;border:0;background:none;border-radius:0;padding:12px}
+.n{flex:none;width:28px;height:28px;border-radius:50%;background:var(--soft);color:var(--ink);display:grid;place-items:center;font-weight:600;font-size:14px}
+.cur .n{background:var(--accent);color:var(--accent-ink)}
+.tag{margin-left:auto;font-size:12px;color:var(--muted);white-space:nowrap}
+.tag.ok{color:var(--accent);font-weight:600}
+.sb{padding:0 12px 12px 50px}
+.sb p{margin:0 0 8px;white-space:pre-line}
+.links{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.links a{color:var(--accent);border:1px solid var(--accent);border-radius:6px;padding:7px 12px;font-size:14px;text-decoration:none}
+.act{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.act button{flex:1;min-width:150px}
+.warn{background:var(--warn);color:var(--warn-ink);border-radius:6px;padding:9px 11px;font-size:14px;margin-bottom:10px}
+select{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:10px}
+.fam{border-left:4px solid var(--accent)}
+.fam ul{margin:6px 0 8px;padding-left:18px}
+.fam li{margin:5px 0;font-size:14px}
+.fam a{color:var(--accent)}
+#sum{min-height:200px;font:13.5px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+@media (max-width:600px){.sb{padding-left:12px}.act button{min-width:100%}}
+</style>
+</head>
+<body>
+<main>
+<h1>Ajuda de campo: impressoras</h1>
+<p class="sub">Descreva o problema. Você recebe os passos na ordem, do mais simples ao mais difícil, e para quando resolver.</p>
+<section class="panel" id="home">
+  <label for="desc" style="margin-top:0">O que está acontecendo?</label>
+  <textarea id="desc" rows="3" placeholder="Ex.: imprime com listra preta no meio / aparece offline / papel atolado"></textarea>
+  <label for="model">Modelo da impressora (opcional, melhora as buscas de foto e vídeo)</label>
+  <input type="text" id="model" placeholder="Ex.: Lexmark M3250, MS410, MX711, HP LaserJet M404">
+  <label for="fam">Família Lexmark (mostra códigos de peças e dicas do modelo)</label>
+  <select id="fam"><option value="">Detectar pelo modelo digitado</option></select>
+  <button class="pri" id="go" style="width:100%;margin-top:12px">Buscar solução</button>
+  <div id="res" class="list" aria-live="polite"></div>
+</section>
+<section id="flow" hidden></section>
+</main>
+<script>
+/* Cada passo: [título, como fazer, termo de busca para fotos/vídeos] */
+const P=[
+{t:"Offline / não imprime / fila travada",kw:["offline","nao imprime","não imprime","fila","travada","preso","spooler","nada acontece","não sai","nao sai","desconectada"],
+why:"Quase sempre é fila travada, impressora marcada como offline, porta com IP errado ou driver ruim.",
+s:[
+["Olhar a impressora","Confira se está ligada e sem erro no painel ou luz vermelha/laranja. Veja se há papel e toner/tinta. Se tiver erro, resolva antes de mexer no computador.","painel erro"],
+["Tirar do modo offline","Configurações → Impressoras e scanners → escolha a impressora → Abrir fila de impressão. No menu Impressora, desmarque 'Usar impressora offline' e 'Pausar impressão'.","impressora offline windows"],
+["Limpar a fila","Win+R → services.msc → Spooler de Impressão → Parar. Abra C:\\Windows\\System32\\spool\\PRINTERS e apague tudo o que estiver dentro (a pasta não). Volte ao serviço e clique em Iniciar. Teste de novo.","limpar fila de impressão spooler"],
+["Testar se ela responde na rede","Imprima pelo painel o relatório de configuração (veja o IP). No PC: Win+R → cmd → ping IP-DA-IMPRESSORA. Se não responde: cabo, Wi-Fi ou rede (veja o roteiro 'Perdeu a rede').","imprimir relatório de configuração"],
+["Conferir a porta","Propriedades da impressora → aba Portas. A porta marcada precisa ter o IP atual da impressora. Se for diferente, Configurar porta e corrigir, ou criar nova porta TCP/IP.","porta TCP/IP impressora"],
+["Reinstalar o driver","Remova a impressora, depois em Servidor de impressão (printui /s /t2) remova o driver. Baixe o driver completo no site do fabricante e instale de novo.","remover driver impressora windows"]],
+esc:"Se o relatório de teste sai pelo painel mas nada sai do PC, o problema é do computador (driver ou rede). Se nem o relatório sai, o defeito é da impressora."},
+{t:"Papel atolado / puxa várias folhas / não puxa",kw:["papel","atol","atolad","enroscou","enrosc","puxa","folha","dobra","amassa","rolo"],
+why:"Atolamentos repetidos costumam ser papel úmido, bandeja mal ajustada ou rolo de tração gasto.",
+s:[
+["Desligar e esfriar","Desligue e tire da tomada. A parte traseira e o fusor ficam muito quentes: espere uns 15 minutos antes de mexer na área interna.","impressora laser fusor quente"],
+["Retirar o papel com cuidado","Abra todas as tampas (frontal, traseira, bandeja, unidade duplex). Puxe o papel devagar, com as duas mãos, no sentido do caminho do papel, para não rasgar. Procure pedaços pequenos.","como remover papel atolado impressora"],
+["Conferir o papel e a bandeja","Papel seco e sem dobras, folhas ventiladas, bandeja sem exagero e guias encostadas de leve. Confira se o tipo e o tamanho no driver são os mesmos da bandeja.","como colocar papel bandeja impressora"],
+["Limpar os rolos de tração","Com pano sem fiapos levemente úmido (água ou álcool isopropílico), limpe os rolos de borracha girando-os. Deixe secar.","limpar rolo de tração impressora"],
+["Avaliar desgaste","Se continuar puxando mal ou atolando sem motivo, o rolo de coleta ou a almofada de separação estão gastos. Troque pelo kit de manutenção do modelo.","kit manutenção rolo tração impressora"]],
+esc:"Rolo gasto, sensor de papel ou engrenagem quebrada: encaminhe para troca de peça ou assistência."},
+{t:"Listras, manchas ou impressão fraca (laser)",kw:["listra","risco","mancha","fraca","clara","borrada","borrando","sujando","suja","falha","faixa","apagada","laser"],
+why:"A forma da falha indica a peça. Listra preta fixa: cilindro/toner. Faixa branca: toner baixo. Mancha que se repete: cilindro ou fusor.",
+s:[
+["Imprimir uma página de teste","Imprima pelo painel (não pelo PC). Se a falha aparece, é a impressora. Observe se a marca se repete e onde fica: ao longo da folha, em uma lateral ou no meio.","página de teste impressora laser defeitos"],
+["Conferir o modo economia","No driver e no painel, desative 'Economode' / modo econômico. Impressão clara pode ser só isso.","desativar modo econômico toner"],
+["Sacudir o toner","Retire o toner, balance suavemente na horizontal para redistribuir o pó e recoloque. Faça sobre um papel para não sujar. Teste.","como balançar toner impressora"],
+["Limpar a janela do laser","Com a impressora desligada, passe pano seco ou cotonete seco na lente/janela do laser se houver acesso. Nunca use líquido.","limpar lente laser impressora"],
+["Trocar o toner por um bom","Teste com um toner que você sabe que funciona. Se a falha some, o toner era o defeito.","trocar toner impressora"],
+["Trocar o cilindro","Se a falha permanece (listra preta ou marca que se repete), o cilindro (drum/unidade de imagem) está danificado. Em modelos com cilindro separado, troque.","trocar cilindro impressora drum"],
+["Suspeitar do fusor","Toner que sai com a mão ou borra o papel indica fusor. Troca é assistência técnica.","fusor impressora problema"]],
+esc:"Fusor, lente laser ou placa de alta tensão: encaminhe para assistência."},
+{t:"Falhas, listras ou cores erradas (jato de tinta)",kw:["jato","tinta","cabeçote","cabecote","bicos","entupid","cor","cores","tanque","epson","canon"],
+why:"Em jato de tinta, o mais comum é cabeçote com bicos entupidos por ficar parada.",
+s:[
+["Ver o nível de tinta","Veja no utilitário do fabricante ou no painel. Tinta baixa causa falhas de cor e listras.","verificar nível de tinta impressora"],
+["Imprimir o teste de bicos","No utilitário/driver: Manutenção → Verificação de bicos. Linhas faltando indicam bico entupido.","teste de bicos impressora"],
+["Limpar o cabeçote","Na mesma tela, execute a Limpeza de cabeçote. Faça no máximo duas vezes seguidas, pois gasta tinta. Depois imprima o teste de bicos de novo.","limpeza de cabeçote impressora"],
+["Alinhar o cabeçote","Execute Alinhamento no utilitário. Corrige imagem duplicada ou tremida.","alinhar cabeçote impressora"],
+["Deixar agir e repetir","Se ainda falha, deixe a impressora parada por algumas horas e repita a limpeza uma vez. Evite repetir demais.","cabeçote entupido impressora"],
+["Avaliar troca","Cabeçote seco por muito tempo ou cartucho incompatível: troque o cartucho ou cabeçote conforme o modelo.","trocar cabeçote impressora"]],
+esc:"Cabeçote seco que não recupera ou placa: assistência ou troca de cabeçote."},
+{t:"Toner/cartucho não reconhecido ou erro de toner",kw:["toner","cartucho","nao reconhece","não reconhece","chip","incompativel","incompatível","sem toner","original","substituir","bloqueado"],
+why:"Em geral é contato sujo, lacre esquecido, toner incompatível ou chip bloqueado pelo fabricante.",
+s:[
+["Conferir o código","Veja o código do toner na etiqueta e compare com o modelo da impressora. Toner de outro modelo não funciona.","código toner compatível impressora"],
+["Tirar o lacre","Toner novo vem com fita ou trava de proteção. Remova antes de instalar.","retirar lacre toner"],
+["Reencaixar e limpar contatos","Retire o toner, limpe o chip e os contatos da impressora com pano seco e recoloque até travar.","limpar chip toner"],
+["Reiniciar a impressora","Desligue, tire da tomada por 1 minuto, ligue. Muitos erros de leitura somem aqui.","reiniciar impressora"],
+["Testar com outro toner","Teste com um toner conhecido. Se funcionar, o anterior é o defeito (chip ou compatível ruim).","testar toner outra impressora"],
+["Considerar bloqueio de firmware","Alguns fabricantes (HP, por exemplo) bloqueiam toner não original após atualização de firmware. Nesse caso, é preciso toner original ou procedimento do fornecedor.","firmware bloqueia toner compatível"]],
+esc:"Se um toner comprovadamente bom também falha, o defeito é na impressora (leitor/contatos)."},
+{t:"Erro ao conectar impressora compartilhada (0x...)",kw:["0x","compartilhada","compartilhamento","nao conecta","não conecta","erro de conexao","acesso negado","windows nao","709","11b","bcb","007c","0040"],
+why:"Erros 0x0000011b, 0x00000709 e 0x00000bcb são comuns depois de atualizações do Windows. O código indica a correção.",
+s:[
+["Anotar o código exato","Veja a mensagem ao adicionar a impressora. O código define o caminho. Se ainda não tentou, tente adicionar para ver.","erro 0x0000011b impressora"],
+["Testar acesso ao PC que compartilha","Win+R → \\\\NOME-DO-PC (ou \\\\IP). Se pedir senha, use usuário e senha de lá. Se não abre, ative 'Descoberta de rede' e 'Compartilhamento de arquivos e impressoras' e confira o firewall.","acessar compartilhamento rede windows"],
+["Código 0x0000011b","Correção no PC que compartilha a impressora. Faça backup do registro. Regedit → HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Print → novo valor DWORD (32 bits) chamado RpcAuthnLevelPrivacyEnabled com valor 0. Reinicie o Spooler (ou o PC) e tente de novo.","0x0000011b RpcAuthnLevelPrivacyEnabled"],
+["Código 0x00000709","No PC cliente: regedit → HKEY_CURRENT_USER\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Windows → botão direito → Permissões → dê Controle total ao usuário. Se persistir, aplique também o ajuste do passo anterior no servidor.","erro 0x00000709 impressora"],
+["Código 0x00000bcb, 0x0000007c ou driver ausente","Instale primeiro o driver da impressora no cliente (site do fabricante). Depois: Adicionar impressora → configuração manual → nova porta local com o nome \\\\PC\\NomeDaImpressora → escolha o driver instalado.","erro 0x00000bcb impressora"],
+["Plano B: IP direto","Se a impressora tem IP próprio, adicione como impressora TCP/IP usando o IP dela. Contorna o compartilhamento.","adicionar impressora por ip tcp/ip"]],
+esc:"Se nada funcionar, a opção mais estável é instalar a impressora por IP em cada PC, sem compartilhar."},
+{t:"Perdeu a rede / Wi-Fi / mudou de IP",kw:["rede","wifi","wi-fi","ip","wireless","sem sinal","reconecta","perdeu","nao encontra","não encontra","nao acha","não acha","mudou"],
+why:"Em rede, o campeão é o IP mudar (DHCP) e o PC continuar apontando para o endereço antigo.",
+s:[
+["Imprimir o relatório de rede","Pelo painel, imprima o relatório de rede/configuração. Anote IP, SSID e sinal.","imprimir relatório de rede impressora"],
+["Comparar com o IP da porta","Se o IP do relatório for diferente do configurado na porta no PC (Propriedades → Portas), corrija a porta.","alterar IP porta impressora"],
+["Reconectar ao Wi-Fi","Reconecte pelo painel. Muitos modelos só usam 2,4 GHz. Se o roteador foi trocado, refaça a conexão.","conectar impressora wifi"],
+["Testar com ping","No PC: ping IP-DA-IMPRESSORA. Sem resposta, confirme se está na mesma rede/VLAN do PC.","ping impressora"],
+["Usar cabo de rede","Se houver porta de rede, conecte por cabo para eliminar problema de sinal.","impressora cabo de rede"],
+["Fixar o IP","No roteador, reserve o IP para o endereço MAC da impressora (ou configure IP fixo no painel). Evita o problema de voltar.","reservar ip dhcp impressora"]],
+esc:"Se a impressora não conecta nem em cabo, pode ser a placa de rede dela."},
+{t:"Imprime página em branco",kw:["branco","branca","em branco","vazia","sem nada","folha vazia","sai em branco"],
+why:"Pode ser toner/tinta, lacre esquecido, driver errado ou falha de hardware.",
+s:[
+["Teste pelo painel","Imprima a página de teste da própria impressora. Se sai em branco, é hardware. Se sai normal, é PC/driver.","página de teste impressora"],
+["Conferir consumíveis","Toner/tinta com nível, lacre retirado, cartucho encaixado. Em jato de tinta, rode o teste de bicos.","verificar toner lacre"],
+["Trocar de driver","Se o teste do painel sai normal, troque o driver (PCL ↔ PS, ou o genérico do fabricante) e teste.","trocar driver pcl ps impressora"],
+["Imprimir como imagem","No PDF: Imprimir → Avançado → 'Imprimir como imagem'. Resolve em arquivos com fonte problemática.","imprimir pdf como imagem"],
+["Suspeitar de hardware","Em laser, a falta de alta tensão ou o cilindro danificado gera páginas em branco.","impressora laser página em branco causa"]],
+esc:"Teste do painel em branco com consumível bom: assistência."},
+{t:"Scanner não funciona / digitalizar",kw:["scanner","scaner","digitalizar","digitaliza","escanear","escaneia","scan","pasta","email"],
+why:"Digitalizar por USB depende de driver. Digitalizar para pasta depende de rede e credenciais.",
+s:[
+["Ver se imprime","Se imprimir funciona, o problema é só do módulo de digitalização ou do software.","scanner impressora não funciona"],
+["Instalar o software completo","Baixe o pacote completo do fabricante (inclui o driver de scanner), não só o driver de impressão.","driver scanner multifuncional"],
+["Conferir o serviço WIA","Win+R → services.msc → Aquisição de Imagens do Windows (WIA) → Iniciar e automático.","serviço WIA windows"],
+["Digitalizar para pasta","Confira nome do PC (ou IP), caminho da pasta compartilhada, usuário e senha cadastrados na impressora. Teste o acesso à pasta pelo PC antes.","scan para pasta compartilhada impressora"],
+["Testar USB direto","Troque o cabo/porta ou teste direto no PC, sem hub.","scanner usb"]],
+esc:"Se o scanner não aparece em nenhum computador, módulo ou cabo flat: assistência."},
+{t:"Instalar impressora nova / driver",kw:["instalar","instalação","instalacao","nova","driver","configurar","adicionar","primeira vez"],
+why:"Para evitar dor de cabeça, use sempre o driver completo do site do fabricante, não o do Windows Update.",
+s:[
+["Anotar o modelo exato","Veja a etiqueta (ex.: M404dn, não só 'M404'). O sufixo muda o driver.","onde fica modelo impressora"],
+["Baixar o driver completo","No site do fabricante, escolha o sistema e a versão 64 bits. Pegue o pacote completo ou o driver universal do modelo.","baixar driver impressora"],
+["Definir como conecta","USB ou rede. Em rede, imprima o relatório e anote o IP.","imprimir relatório de rede"],
+["Instalar","Execute o instalador e siga a opção USB ou rede. Se pedir para conectar a impressora, só então conecte.","instalar impressora windows"],
+["Fixar o IP e testar","Reserve o IP no roteador (ou fixe no painel). Imprima a página de teste do Windows.","imprimir página de teste windows"]],
+esc:"Se o instalador não encontra a impressora, teste o ping do IP e a instalação manual por TCP/IP."},
+{t:"Mensagem ou código de erro no painel",kw:["erro","codigo","código","mensagem","painel","luz","led","piscando","pisca","display","aviso"],
+why:"Cada fabricante tem tabela própria de erros. O caminho é identificar o código e checar o manual.",
+s:[
+["Anotar o texto exato","Anote a mensagem e o código do painel e tire uma foto. Isso vale ouro para o chamado.","erro impressora painel"],
+["Pesquisar com o modelo","Pesquise modelo + código. O botão abaixo já faz isso.","erro código impressora"],
+["Reiniciar completamente","Desligue, retire o cabo da tomada por 1 minuto, ligue.","reiniciar impressora"],
+["Abrir tampas e conferir","Feche bem todas as tampas, confira bandeja e toner/cartucho bem encaixados. Muitos erros são sensor de tampa aberta.","tampa impressora sensor"],
+["Consultar o manual","Procure o manual do modelo no site do fabricante. A tabela de erros indica a peça.","manual impressora tabela de erros"]],
+esc:"Se o erro persistir após reiniciar e reencaixar, anote o código e acione a assistência."},
+{t:"Lexmark: trocar o fusor",kw:["fusor","fuser","trocar fusor","troca do fusor","lexmark","enrugando","amassando","toner sai com a mao","kit de manutencao","substituir fusor"],
+why:"Roteiro geral para mono Lexmark (MS3xx/4xx/5xx/6xx, MS7xx/8xx, MX). A posição das travas muda por modelo: use Ver vídeo com o seu modelo e confira o guia oficial em support.lexmark.com.",
+s:[
+["Confirmar que o defeito é o fusor","Sinais: toner sai com a mão, papel enrugado, mancha que repete, erro de fusor na faixa 9xx do painel ou aviso de kit de manutenção. Imprima a página de configurações e veja o contador do fusor. Erro 9xx pode ser também fonte de alimentação: se tiver um fusor bom, teste antes de comprar.","lexmark fusor defeito sintomas"],
+["Comprar a peça certa","O fusor é específico por modelo e por voltagem (110/127 V ou 220 V). Confira modelo e número de série na etiqueta e compre pelo código. Nos MS71x/MS81x e MX71x/MX81x o kit de manutenção traz fusor, rolo de transferência, rolo de coleta e rolo separador: troque tudo junto.","lexmark kit de manutenção fusor código"],
+["Preparar","Desligue e tire da tomada. Espere esfriar por pelo menos 20 a 30 minutos. Retire papel, toner e unidade de imagem e guarde longe da luz. Trabalhe numa bancada limpa.","lexmark desmontar impressora"],
+["Abrir o acesso ao fusor","Varia por modelo. Em muitos modelos o fusor sai pela traseira, por portas indicadas no guia oficial (ex.: A e D, ou B). No MX/MS71x e 81x: retire a porta traseira e aperte as duas travas laterais para abrir a porta de acesso ao fusor. Outros exigem retirar a tampa superior.","lexmark remover fusor"],
+["Retirar o fusor antigo","Tire uma foto antes de soltar cabos. Solte os parafusos de aperto manual (são dois nos MX/MS71x e 81x), desconecte os conectores, se houver, e puxe reto pelas alças. Não force: se prender, há um parafuso ou conector esquecido.","lexmark remover fusor parafusos"],
+["Instalar o fusor novo","Retire a embalagem e as etiquetas de proteção dos lados. Encaixe até ouvir o clique ou aperte os parafusos, reconecte os cabos e feche as tampas. Se vier cotonete na embalagem, limpe a lente do fusor.","lexmark instalar fusor novo"],
+["Zerar o contador","Ligue a impressora. Em alguns modelos o contador zera sozinho com o fusor novo; em outros é preciso zerar no menu de configuração (veja o roteiro 'Lexmark: zerar contador de manutenção').","lexmark reset fuser counter"],
+["Testar","Imprima de 20 a 30 páginas. Passe a mão: o toner não pode sair. Veja se há papel enrugado, manchas ou erro no painel.","lexmark teste de impressão após fusor"]],
+esc:"Se o erro 9xx continuar com fusor novo e encaixado, suspeite da fonte de alta tensão ou da placa. Encaminhe à assistência."},
+{t:"Lexmark: trocar roletes (rolo de coleta e separador)",kw:["rolete","roletes","rolo de coleta","pick","separador","almofada","nao puxa","não puxa","puxa varias","puxa várias","lexmark","adf","alimentador"],
+why:"Rolo de coleta e separador gastam juntos. Troque os dois em par para o resultado durar.",
+s:[
+["Confirmar o sintoma","Não puxa papel, puxa várias folhas ou atola na entrada, mesmo com papel bom e rolos limpos. Se o problema é no scanner (alimentador de originais), os rolos são os do ADF, que são outro kit.","lexmark rolo de coleta defeito"],
+["Comprar o par certo","Peça pelo modelo e pela bandeja: rolo de coleta (pick roller) e rolo/almofada separadora (separator). ADF e bandejas extras têm kits próprios. Nos modelos grandes, vêm no kit de manutenção.","lexmark pick roller separator código"],
+["Preparar","Desligue e tire da tomada. Retire a bandeja do equipamento e deixe a bancada limpa.","lexmark retirar bandeja"],
+["Trocar o separador","Em muitos modelos fica ligado à bandeja ou à entrada dela. No MX711, por exemplo, retire a bandeja e aperte o botão que libera o conjunto separador. Encaixe o novo no mesmo lugar.","lexmark trocar separador bandeja"],
+["Trocar o rolo de coleta","Fica dentro do equipamento, na entrada da bandeja. Em muitos modelos é preciso retirar a bandeja e, às vezes, o cartucho/unidade de imagem para acessar. Solte a trava plástica, deslize o rolo para fora do eixo e tire foto do sentido de montagem. Instale o novo até travar.","lexmark trocar rolo de coleta"],
+["Evitar sujar","Segure pelas pontas e não toque na borracha, pois a oleosidade da mão reduz a aderência. Gire para conferir se gira livre.","lexmark rolo de coleta instalar"],
+["Zerar o contador dos rolos","Quando houver aviso de manutenção, zere o contador dos rolos no menu de configuração (veja 'Lexmark: zerar contador de manutenção'). Em modelos como MX711, o menu 2+6 zera os rolos do ADF e das bandejas.","lexmark reset maintenance counter"],
+["Testar","Coloque papel e imprima várias folhas, de todas as bandejas. Confira se puxa uma folha de cada vez.","lexmark teste bandeja papel"]],
+esc:"Se puxa mal mesmo com rolo novo, veja o sensor de papel, a embreagem/engrenagem da bandeja ou o papel (umidade, gramatura)."},
+{t:"Lexmark: trocar rolo de transferência",kw:["transferencia","transferência","rolo de transferencia","transfer","fundo sujo","fundo cinza","imagem desigual","lexmark"],
+why:"O rolo de transferência passa o toner do cilindro ao papel. Gasto, causa fundo sujo, manchas e impressão desigual. Costuma ser trocado junto com o fusor.",
+s:[
+["Confirmar o sintoma","Fundo cinza, manchas, imagem fraca ou desigual, com toner e unidade de imagem bons. Teste com toner e unidade que você sabe que funcionam.","lexmark rolo de transferência defeito"],
+["Comprar a peça","Peça pelo modelo. Em modelos maiores faz parte do kit de manutenção.","lexmark transfer roller código"],
+["Preparar","Desligue, tire da tomada e abra a porta frontal. Retire toner e unidade de imagem e guarde longe da luz.","lexmark retirar unidade de imagem"],
+["Localizar o rolo","É um rolo longo, de espuma escura, preso por travas plásticas dos dois lados, dentro do equipamento ou na tampa de acesso. A posição varia: veja o vídeo do modelo.","lexmark onde fica rolo de transferência"],
+["Trocar","Solte as travas das pontas e remova o rolo. Instale o novo, segurando só pelas pontas, e feche as travas. Nunca toque na espuma.","lexmark trocar transfer roller"],
+["Montar e testar","Recoloque unidade de imagem e toner, feche e imprima algumas páginas. O fundo deve voltar limpo.","lexmark teste impressão"]],
+esc:"Se o fundo sujo continua, a causa pode estar na unidade de imagem, no toner ou na fonte de alta tensão."},
+{t:"Lexmark: trocar unidade de imagem (cilindro) e toner",kw:["unidade de imagem","cilindro","drum","imaging","fotocondutor","substituir unidade","lexmark","listra preta","repete"],
+why:"Em vários mono Lexmark o toner e a unidade de imagem (cilindro) são peças separadas. Trocar só a que está gasta economiza.",
+s:[
+["Descobrir qual peça falhou","Aviso 'Substituir unidade de imagem' ou listra/mancha que se repete aponta o cilindro. Impressão fraca com a faixa branca aponta o toner. Teste com peça boa antes de comprar.","lexmark unidade de imagem ou toner defeito"],
+["Comprar a peça certa","Compre pelo código do toner (etiqueta do cartucho) e pelo da unidade de imagem. Os dois variam por modelo.","lexmark código unidade de imagem toner"],
+["Retirar o conjunto","Desligue, abra a porta frontal, retire a unidade de imagem com o toner encaixado e coloque sobre papel numa bancada.","lexmark retirar toner unidade de imagem"],
+["Separar o toner","Solte as travas do toner e retire do conjunto. Instale o toner no cilindro novo (ou cilindro novo com o toner antigo).","lexmark separar toner da unidade de imagem"],
+["Proteger o cilindro","Remova lacres e fitas. Não toque no cilindro (verde/azul) e não o deixe exposto à luz. Mantenha-o coberto até o momento de instalar.","lexmark cilindro cuidado luz"],
+["Instalar e testar","Recoloque o conjunto até travar, feche a porta e imprima algumas páginas. Se aparecer mensagem de peça não reconhecida, reinicie a impressora.","lexmark instalar unidade de imagem"]],
+esc:"Se a mensagem persistir com peça nova e original, verifique contatos do chip e o firmware."},
+{t:"Lexmark: zerar contador de manutenção (mensagem 80)",kw:["contador","zerar","reset","mensagem 80","manutencao","manutenção","substituir kit","scheduled maintenance","lexmark"],
+why:"O aviso 80 (manutenção programada) aparece pela contagem de páginas. Só zere depois de trocar as peças do kit.",
+s:[
+["Entender o aviso","Zerar sem trocar as peças só apaga a mensagem; as peças gastas continuam gastas. Troque primeiro fusor e rolos do kit.","lexmark 80 scheduled maintenance"],
+["Modelos com tela touch","Configurações → Dispositivo → Manutenção → Menu de configuração → Uso de suprimentos e contadores → Reset do fusor (ou do kit de manutenção).","lexmark reset contador de manutenção touch"],
+["Modelos com painel de botões","Desligue. Segure os botões 2 e 6, ligue a impressora e solte após cerca de 10 segundos. No Menu de configuração, escolha Reset Maintenance Counter, selecione o kit, confirme com Sim e saia pelo Exit Configuration Menu.","lexmark configuration menu 2 e 6"],
+["Se o modelo não deixa zerar","Alguns modelos (como o MX711) zeram o contador sozinhos ao instalar o fusor novo, que tem um chip. O menu 2+6 só zera rolos do ADF e das bandejas. Nesse caso, confira o encaixe do fusor e reinicie.","lexmark fusor chip reset automático"],
+["Se o aviso continuar","Confirme que a peça e a voltagem estão corretas, reinstale o fusor, atualize o firmware. Persistindo, acione a assistência.","lexmark atualizar firmware"]],
+esc:"Aviso persistente com fusor correto e instalado: assistência."},
+{t:`Lexmark M3250 / série 62x: trocar o kit de manutenção`,kw:[`m3250`,`ms621`,`ms622`,`mx622`,`b2650`,`41x1225`,`kit de manutencao`,`kit de manutenção`,`lexmark`],
+why:`Roteiro para M3250, MS621, MS622, MX622 e B2650. A Lexmark recomenda o kit a cada 200 mil páginas.`,
+s:[
+[`Confirmar que é hora do kit`,`O aviso 80 de manutenção, atolamentos na entrada do papel ou fusor com defeito indicam o kit. Imprima a página de configurações e veja o contador de páginas.`,`lexmark m3250 aviso 80 kit de manutenção`],
+[`Conferir o kit`,`O kit desta série é o 41X1225 (versão 110 V) ou 41X1226 (220 V). Vem com fusor, rolo de transferência, rolo separador, rolos de coleta (pick tires) e rolo e almofada do multiuso. Abra a caixa, confira todas as peças e veja se a voltagem bate com a tomada.`,`lexmark 41X1225 kit manutenção`],
+[`Ler a folha de instruções do kit`,`O kit vem com instruções. Use-as junto com o vídeo do modelo, pois a ordem das travas muda de série para série.`,`lexmark m3250 troca de fusor vídeo`],
+[`Preparar`,`Desligue, tire da tomada e espere no mínimo 30 minutos. Retire bandejas, toner e unidade de imagem (guarde longe da luz). Bancada limpa e foto dos cabos antes de soltar.`,`lexmark m3250 abrir impressora`],
+[`Trocar os rolos de papel`,`Troque o rolo separador, os rolos de coleta e o rolo e a almofada do multiuso. Segure pelas pontas e não toque na borracha. Instale até travar e gire para ver se giram livres.`,`lexmark m3250 rolo separador pick tires`],
+[`Trocar o rolo de transferência`,`Solte o antigo e instale o novo segurando só pelas pontas. Não toque na espuma.`,`lexmark m3250 rolo de transferência`],
+[`Trocar o fusor`,`Com tudo frio, solte parafusos e conectores do fusor antigo, puxe reto e instale o novo até encaixar. Retire as etiquetas de proteção do novo antes.`,`lexmark m3250 remover fusor`],
+[`Montar e zerar o contador`,`Recoloque tudo e ligue. Se o aviso 80 continuar, no M3250 (touch) vá em Configurações → Dispositivo → Manutenção → Menu de configuração → Uso de suprimentos e contadores e zere o contador. Em modelos de botões, ligue segurando 2 e 6.`,`lexmark m3250 reset contador de manutenção`],
+[`Testar`,`Imprima de 20 a 30 páginas, de todas as bandejas e em frente e verso. Veja fixação, manchas e atolamentos.`,`lexmark m3250 teste de impressão`]],
+esc:`Aviso 80 persistente com contador zerado, ou erro 9xx após a troca: assistência.`},
+{t:`Lexmark série 71x/81x: trocar o kit de manutenção (guia oficial)`,kw:[`ms710`,`ms711`,`ms810`,`ms811`,`ms812`,`mx710`,`mx711`,`mx810`,`mx811`,`lexmark`],
+why:`Baseado no guia oficial da Lexmark para MS71x, MS81x, MX71x e MX81x.`,
+s:[
+[`Conferir o kit`,`O kit tem quatro peças: fusor, rolo de transferência, rolo de coleta e rolo separador. Troque as quatro juntas.`,`lexmark mx711 kit de manutenção`],
+[`Preparar`,`Desligue, tire da tomada e deixe esfriar. A superfície do fusor é quente.`,`lexmark mx711 maintenance kit`],
+[`Trocar o separador`,`Retire a bandeja. Aperte o botão que libera o rolo separador da bandeja e coloque o novo.`,`lexmark mx711 separator roller`],
+[`Trocar o fusor`,`Retire a porta traseira (desliza para fora). Aperte as duas travas laterais para abrir a porta de acesso ao fusor, solte os dois parafusos de aperto manual e puxe com cuidado. Instale o novo, aperte os parafusos e feche.`,`lexmark mx711 fuser replacement`],
+[`Trocar o rolo de transferência`,`Mova o rolo suavemente para a direita para soltá-lo do braço esquerdo. No novo, mantenha a proteção plástica sobre a espuma até instalar e não toque nela.`,`lexmark mx711 transfer roller replacement`],
+[`Trocar o rolo de coleta`,`Siga o guia oficial do modelo, pois a posição varia.`,`lexmark mx711 pick roller replacement`],
+[`Conferir o contador`,`No MX711 o contador zera sozinho quando o fusor novo (com chip) é reconhecido. O menu 2 + 6 só zera rolos do ADF e das bandejas. Se o aviso 80 ficar, reinstale o fusor e confira o encaixe.`,`lexmark mx711 reset maintenance count`],
+[`Testar`,`Imprima várias páginas por todas as bandejas e veja fixação, manchas e atolamentos.`,`lexmark mx711 teste de impressão`]],
+esc:`Aviso persistente com o kit completo e o fusor bem encaixado: assistência.`},
+{t:`Lexmark: significado de mensagens e códigos do painel`,kw:[`mensagem`,`código`,`codigo`,`significa`,`erro lexmark`,`lexmark`],
+why:`Guia de consulta rápida. Os números exatos variam por modelo e firmware: confirme na tabela do guia do usuário.`,
+s:[
+[`200, 201, 202, 230, 24x, 250 (atolamento)`,`A série 2xx é atolamento de papel. O número indica a área: 200 a 202 na parte interna e no fusor, 230 no duplex, 24x nas bandejas e 250 no multiuso. O painel mostra o caminho: remova o papel pela área indicada e feche todas as tampas.`,`lexmark paper jam 200 201 202`],
+[`31 e 32 (cartucho)`,`31: cartucho com defeito ou ausente. 32: cartucho não suportado (de outra região ou incompatível). Reencaixe, limpe os contatos e teste outro cartucho.`,`lexmark 31 replace defective cartridge`],
+[`34 (papel curto)`,`O papel é menor do que o tamanho configurado. Ajuste o tamanho da bandeja no painel e as guias.`,`lexmark 34 short paper`],
+[`37, 38, 39 (memória / página complexa)`,`Memória insuficiente ou cheia, ou página complexa. Imprima uma página por vez, reduza a resolução ou simplifique o arquivo.`,`lexmark 38 memory full`],
+[`80, 84, 88 (manutenção, imagem, toner)`,`80: manutenção programada (kit). 84: substituir unidade de imagem. 88: toner baixo, ainda imprime; sacuda o toner e prepare a troca.`,`lexmark 84 replace imaging unit`],
+[`9xx (erro de serviço)`,`Anote o código inteiro (ex.: 920.xx). Desligue, tire da tomada por 30 segundos e ligue. Códigos de fusor costumam ficar na faixa 92x, mas confirme na tabela do modelo. Se voltar, assistência.`,`lexmark 900 service error`],
+[`Tabela oficial do modelo`,`Procure a lista de mensagens no guia do usuário do seu modelo.`,`lexmark guia do usuário mensagens do painel`]],
+esc:`Erro que volta após reiniciar: anote o código completo e acione a assistência.`},
+{t:`Lexmark: acessar a página web, fixar IP e atualizar firmware`,kw:[`firmware`,`embedded`,`ews`,`senha`,`admin`,`endereco ip`,`endereço ip`,`pagina web`,`página web`,`lexmark`],
+why:`A página web da impressora serve para ver contadores, fixar o IP e atualizar o firmware.`,
+s:[
+[`Descobrir o IP`,`Painel touch: veja a tela inicial ou Configurações → Rede/Portas. Painel de botões: imprima a página de configuração de rede. Anote o IP.`,`lexmark ver endereço ip impressora`],
+[`Abrir a página da impressora`,`No navegador, digite http://IP-DA-IMPRESSORA (ou https). Se aparecer aviso de certificado, é normal em rede interna: continue. Só abre se o PC estiver na mesma rede.`,`lexmark embedded web server acessar`],
+[`Entrar`,`Dependendo do firmware, o acesso pede senha de administrador definida pelo responsável. Peça a senha ao administrador do equipamento.`,`lexmark senha administrador embedded web server`],
+[`Fixar o IP`,`Em Configurações → Rede/Portas → TCP/IP, defina endereço IP estático. Ou reserve o IP no roteador. Se o IP mudou, corrija a porta nos PCs.`,`lexmark configurar ip estático`],
+[`Atualizar firmware`,`Baixe o firmware do modelo em support.lexmark.com e envie pela página (Configurações → Dispositivo → Atualizar firmware). Não desligue durante. Atenção: firmware novo pode bloquear toner não original.`,`lexmark atualizar firmware`],
+[`Restaurar a rede`,`Se perdeu o acesso, restaure os padrões de rede no menu. Isso apaga o IP e exige reconfigurar.`,`lexmark restaurar configurações de rede`]],
+esc:`Se a página não abre nem com ping respondendo, atualize pelo painel ou acione a assistência.`},
+{t:`Lexmark MX/XM/MB: listra em cópia ou digitalização (vidro e ADF)`,kw:[`listra na copia`,`listra na cópia`,`cópia`,`copia`,`vidro`,`adf`,`alimentador`,`scanner sujo`,`lexmark`],
+why:`Se a listra aparece só na cópia e na digitalização, a causa é sujeira no scanner, e não no toner.`,
+s:[
+[`Descobrir de onde vem`,`Faça uma impressão e uma cópia pelo painel. Se só a cópia tem listra, o problema é do scanner. Se a impressão também tem, volte aos roteiros de laser.`,`lexmark listra na cópia`],
+[`Limpar o vidro`,`Desligue. Passe pano sem fiapos levemente úmido em álcool isopropílico no vidro do scanner e seque.`,`lexmark limpar vidro scanner`],
+[`Limpar a faixa do ADF`,`Limpe a faixa de vidro estreita usada pelo alimentador automático e a tira branca da tampa. Listra vertical em cópias do ADF costuma ser sujeira nessa faixa.`,`lexmark limpar vidro adf listra vertical`],
+[`Limpar os rolos do ADF`,`Limpe os rolos do alimentador com pano úmido sem fiapos. Rolos gastos puxam mal ou atolam: veja o roteiro de roletes.`,`lexmark adf rolos limpeza`],
+[`Testar`,`Faça novas cópias pelo vidro e pelo ADF.`,`lexmark teste cópia`]],
+esc:`Listra que persiste após limpeza: módulo do scanner. Assistência.`}
+];
+const $=id=>document.getElementById(id);
+const norm=s=>s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+let cur=null,idx=0,res=[],open=-1,done=false,solvedAt=-1;
+function score(d){return P.map((p,i)=>({i,s:p.kw.reduce((a,k)=>a+(d.includes(norm(k))?1:0),0)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s);}
+function pickBtn(i,hint){const b=document.createElement("button");b.className="pick";b.innerHTML="<b></b><span></span>";b.querySelector("b").textContent=P[i].t;b.querySelector("span").textContent=hint;b.onclick=()=>start(i);return b;}
+const F=[
+{n:`Lexmark M3250 / MS621 / MS622 / MX622 / B2650 (série 62x)`,re:/m3250|xm3250|ms62[12]|mx62[12]|b2650|mb2650/,guide:`https://support.lexmark.com/pt_br/manuals-guides/online/M3250.html`,l:[
+`Painel: o M3250 tem tela touch colorida de 4,3 pol. (e-Task). O MS621 pode ter painel de botões: nele use o método 2 + 6 ao ligar para zerar contadores.`,
+`Kit de manutenção (200 mil páginas): 41X1225 na versão 110 V e 41X1226 na versão 220 V. Traz fusor, rolo de transferência, rolo separador, rolos de coleta (pick tires) e rolo e almofada do alimentador multiuso.`,
+`Unidade de imagem 60 mil páginas: 56F0Z00 (serve MS/MX 32x, 42x, 52x e 62x).`,
+`Toner de 25 mil páginas (programa de retorno): 24B7505.`,
+`Papel: bandeja de 550 folhas e multiuso de 100. Duplex integrado.`]},
+{n:`Lexmark MS310 / MS410 / MS510 / MS610 e MX310 / MX410 / MX510 / MX610`,re:/ms3(10|12|15|17)|ms4(10|15|17)|ms5(10|15|17)|ms6(10|17)|mx3(10|11)|mx4(10|11)|mx5(10|11)|mx6(10|11)/,l:[
+`Fusor 110 V: 40X8023 (serve vários modelos dessa linha). A versão 220 V tem outro código.`,
+`Unidade de imagem: 50F0Z00 (500Z). Toner e unidade de imagem são peças separadas.`,
+`Painel: costuma ser de botões. Para zerar contador, ligue segurando 2 e 6 e solte após 10 segundos.`,
+`Rolo de transferência e roletes se compram à parte do fusor.`]},
+{n:`Lexmark MS321 / MS421 / MS521 / MS331 / MS431 / MX321 / MX421 / MX521 / M1242 / M1246`,re:/ms[345]21|ms[34]31|mx[345]21|mx431|m1242|m1246|m1342/,l:[
+`Unidade de imagem de 60 mil páginas: 56F0Z00, que serve MS/MX 32x, 42x, 52x e 62x e M/XM12xx e 32xx.`,
+`MS331, MS431 e MX431 usam kit de fusor próprio (versão 115 V), diferente da linha MS3xx antiga.`,
+`O código do toner está na etiqueta do cartucho: compre por ele.`]},
+{n:`Lexmark MS710 / MS711 / MS810 / MS811 / MS812 e MX710 / MX711 / MX810 / MX811`,re:/ms7|ms8|mx7|mx8/,guide:`https://support.lexmark.com/en_us/printers/printer/MX711/article/HO3894.html`,l:[
+`O guia oficial da Lexmark cobre a troca do kit de manutenção de MS81x, MS71x, MX81x e MX71x.`,
+`O kit tem quatro peças: fusor, rolo de transferência, rolo de coleta e rolo separador. Troque todas juntas.`,
+`Fusor: remova a porta traseira, aperte as duas travas laterais para abrir a porta de acesso, solte os dois parafusos de aperto manual e puxe.`,
+`Separador: retire a bandeja e aperte o botão que libera o rolo separador.`,
+`No MX711 o contador zera sozinho com o fusor novo (tem chip). O menu 2 + 6 só zera rolos do ADF e das bandejas.`]}
+];
+F.forEach((f,i)=>{const o=document.createElement(`option`);o.value=i;o.textContent=f.n;$(`fam`).appendChild(o);});
+function famFor(){const v=$(`fam`).value;if(v!=='')return F[v];const m=$(`model`).value.toLowerCase().replace(/[\s-]/g,'');if(!m)return null;return F.find(f=>f.re.test(m))||null;}
+function famCard(box){const f=famFor();if(!f)return;const d=document.createElement(`div`);d.className=`panel fam`;const h=document.createElement(`h2`);h.textContent=`Ficha do modelo`;const s=document.createElement(`p`);s.className=`why`;s.textContent=f.n;const u=document.createElement(`ul`);f.l.forEach(x=>{const li=document.createElement(`li`);li.textContent=x;u.appendChild(li);});const a=document.createElement(`a`);a.target=`_blank`;a.rel=`noopener`;a.textContent=`Abrir guia oficial da Lexmark`;a.href=f.guide||(`https://www.google.com/search?q=`+encodeURIComponent(`site:support.lexmark.com `+($(`model`).value||f.n)));const p=document.createElement(`p`);p.className=`why`;p.style.margin=`8px 0 0`;p.textContent=`Códigos vêm do site da Lexmark e de revendedores. Confirme pelo número de série e pela voltagem antes de comprar.`;d.append(h,s,u,a,p);box.appendChild(d);}
+$("go").onclick=()=>{
+ const d=norm($("desc").value),box=$("res");box.innerHTML="";
+ const r=d.trim()?score(d).slice(0,3):[];
+ const h=document.createElement("p");h.className="sub";h.style.margin="12px 0 0";
+ if(r.length){h.textContent="Escolha o que mais se parece com o seu caso:";box.appendChild(h);r.forEach(x=>box.appendChild(pickBtn(x.i,P[x.i].why)));}
+ else{h.textContent=d.trim()?"Não identifiquei pelo texto. Escolha uma categoria:":"Escolha uma categoria:";box.appendChild(h);P.forEach((p,i)=>box.appendChild(pickBtn(i,"")));}
+ if(r.length){const o=document.createElement("button");o.className="pick";o.innerHTML="<span>Ver todas as categorias</span>";o.onclick=()=>{box.innerHTML="";P.forEach((p,i)=>box.appendChild(pickBtn(i,"")));};box.appendChild(o);}
+};
+function start(i){cur=i;idx=0;res=P[i].s.map(()=>null);open=-1;done=false;solvedAt=-1;$("home").hidden=true;$("flow").hidden=false;draw();window.scrollTo(0,0);}
+function q(base,suffix){const m=$("model").value.trim();return encodeURIComponent((m?m+" ":"")+base+(suffix||""));}
+function draw(){
+ const p=P[cur],f=$("flow");f.innerHTML="";
+ const top=document.createElement("div");top.className="panel";
+ top.innerHTML='<h2></h2><p class="why"></p><button id="back">Voltar e mudar o problema</button>';
+ top.querySelector("h2").textContent=p.t;top.querySelector(".why").textContent=p.why;
+ top.querySelector("#back").onclick=()=>{$("flow").hidden=true;$("home").hidden=false;window.scrollTo(0,0);};
+ f.appendChild(top);famCard(f);
+ const w=document.createElement("div");w.className="warn";w.textContent="Segurança: desligue e tire da tomada antes de abrir. O fusor (parte traseira) fica muito quente.";f.appendChild(w);
+ p.s.forEach((s,i)=>{
+  const isCur=!done&&i===idx,show=isCur||open===i;
+  const el=document.createElement("div");el.className="step"+(isCur?" cur":"");
+  const tag=res[i]==="no"?'<span class="tag">Não resolveu</span>':res[i]==="ok"?'<span class="tag ok">Resolveu</span>':(isCur?'<span class="tag">Faça agora</span>':"");
+  const h=document.createElement("button");h.className="sh";h.innerHTML='<span class="n"></span><b></b>'+tag;
+  h.querySelector(".n").textContent=i+1;h.querySelector("b").textContent=s[0];
+  h.onclick=()=>{open=(open===i?-1:i);draw();};el.appendChild(h);
+  if(show){
+   const b=document.createElement("div");b.className="sb";
+   const t=document.createElement("p");t.textContent=s[1];b.appendChild(t);
+   const l=document.createElement("div");l.className="links";
+   l.innerHTML='<a target="_blank" rel="noopener">Ver fotos</a><a target="_blank" rel="noopener">Ver vídeo</a>';
+   l.children[0].href="https://www.google.com/search?tbm=isch&q="+q(s[2]);
+   l.children[1].href="https://www.youtube.com/results?search_query="+q(s[2]," como fazer");
+   b.appendChild(l);
+   if(isCur){const a=document.createElement("div");a.className="act";
+    a.innerHTML='<button class="pri">Resolveu</button><button>Não resolveu, próximo passo</button>';
+    a.children[0].onclick=()=>{res[i]="ok";solvedAt=i;done=true;open=-1;draw();};
+    a.children[1].onclick=()=>{res[i]="no";open=-1;if(idx<p.s.length-1)idx++;else{done=true;}draw();};
+    b.appendChild(a);}
+   el.appendChild(b);}
+  f.appendChild(el);
+ });
+ if(done)summary(f);
+}
+function summary(f){
+ const p=P[cur],ok=solvedAt>=0;
+ const pan=document.createElement("div");pan.className="panel";pan.style.marginTop="14px";
+ pan.innerHTML='<h2></h2><p class="why"></p><textarea id="sum" rows="10" aria-label="Resumo do atendimento"></textarea><div class="act"><button class="pri" id="cp">Copiar resumo</button><button id="nw">Novo atendimento</button></div><p class="sub" id="msg" aria-live="polite" style="margin:8px 0 0"></p>';
+ pan.querySelector("h2").textContent=ok?"Resolvido":"Esgotei os passos";
+ pan.querySelector(".why").textContent=ok?"Copie o resumo para o chamado.":p.esc;
+ const m=$("model").value.trim(),d=$("desc").value.trim();
+ let t="ATENDIMENTO - IMPRESSORA"+(m?" "+m:"")+"\n"+new Date().toLocaleDateString("pt-BR")+"\n";
+ if(d)t+="Problema relatado: "+d+"\n";
+ t+="Categoria: "+p.t+"\n\nProcedimentos realizados:\n";
+ p.s.forEach((s,i)=>{if(res[i])t+="- "+s[0]+(res[i]==="ok"?" (resolveu)":" (sem resolver)")+"\n";});
+ t+="\nResultado: "+(ok?"problema resolvido na etapa \""+p.s[solvedAt][0]+"\".":"não resolvido em campo. "+p.esc)+"\n";
+ f.appendChild(pan);$("sum").value=t;
+ $("cp").onclick=async()=>{try{await navigator.clipboard.writeText($("sum").value);$("msg").textContent="Resumo copiado.";}catch(e){$("sum").select();document.execCommand("copy");$("msg").textContent="Resumo copiado.";}};
+ $("nw").onclick=()=>{$("flow").hidden=true;$("home").hidden=false;$("res").innerHTML="";$("desc").value="";window.scrollTo(0,0);};
+}
+</script>
+</body>
+</html>
